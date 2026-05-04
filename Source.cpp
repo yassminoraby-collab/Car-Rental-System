@@ -54,7 +54,7 @@ struct Payment {
 struct Rental {
     int rentalID = 0;
     int carID = 0;
-    string customerNationalID; // [MODIFIED] changed from int customerID to string to match Customer struct
+    string customerNationalID; 
     int rentalDays = 0;
     float totalCost = 0.0f;
     Date startDate;
@@ -181,7 +181,7 @@ void loadAllData() {
             rentFile >> rentals[i].rentalID;
             rentFile >> rentals[i].carID;
             rentFile.ignore();
-            getline(rentFile, rentals[i].customerNationalID); // [MODIFIED] load as string
+            getline(rentFile, rentals[i].customerNationalID); 
             rentFile >> rentals[i].rentalDays;
             rentFile >> rentals[i].totalCost;
             rentFile >> rentals[i].startDate.day;
@@ -241,7 +241,7 @@ void saveAllData() {
         for (int i = 0; i < rentalCount; i++) {
             rentFile << rentals[i].rentalID << "\n";
             rentFile << rentals[i].carID << "\n";
-            rentFile << rentals[i].customerNationalID << "\n"; // [MODIFIED] save as string
+            rentFile << rentals[i].customerNationalID << "\n"; 
             rentFile << rentals[i].rentalDays << "\n";
             rentFile << rentals[i].totalCost << "\n";
 
@@ -409,7 +409,6 @@ void showCars() {
 
 
 // ==================== TAB 6: Update_car_details RAHF ====================
-// [ADDED] New function to update an existing car's details by ID
 
 void Update_car_details() {
     if (cars_counter == 0) {
@@ -455,14 +454,6 @@ void Update_car_details() {
         cout << "Car with ID " << id << " Not Found.\n";
     }
 }
-
-
-
-
-
-
-
-
 
 
 // ==================== TAB 7: signUp ====================
@@ -620,7 +611,7 @@ bool deleteCustomer() {
 }
 
 // ==================== TAB 11: adminMenu ====================
-// [MODIFIED] Admin menu now includes car management + customer management
+
 
 void adminMenu() {
     int choice;
@@ -780,12 +771,12 @@ void rentCar() {
 
     cin.ignore();
     cout << "Enter Customer National ID: ";
-    getline(cin, customerID); // [MODIFIED] changed from int to string to match Customer struct
+    getline(cin, customerID); 
 
     // Check if customer exists
     bool customerFound = false;
     for (int i = 0; i < customersCount; i++) {
-        if (customers[i].National_ID == customerID) { // [MODIFIED] compare with National_ID string
+        if (customers[i].National_ID == customerID) { 
             customerFound = true;
             break;
         }
@@ -814,7 +805,7 @@ void rentCar() {
     // Create rental record
     rentals[rentalCount].rentalID = rentalCount + 1;
     rentals[rentalCount].carID = carID;
-    rentals[rentalCount].customerNationalID = customerID; // [MODIFIED] store string ID
+    rentals[rentalCount].customerNationalID = customerID; 
     rentals[rentalCount].rentalDays = days;
     rentals[rentalCount].totalCost = days * cars[carIndex].dailyRate;
     rentals[rentalCount].startDate = startDate;
@@ -831,9 +822,7 @@ void rentCar() {
     // Ask for payment
     Payment_Methods();
 
-    // [MODIFIED] Removed saveRentalsToFile() call from here.
-    // File saving is now done ONLY in saveAllData() at the end of main(),
-    // as per project rules: files are only used at program start (load) and end (save).
+    
 }
 
 // ==================== TAB 15: cancelReservation YARA ====================
@@ -874,9 +863,7 @@ void cancelReservation() {
 
     cout << "Reservation canceled successfully!\n";
 
-    // [MODIFIED] Removed saveRentalsToFile() call from here.
-    // File saving is now done ONLY in saveAllData() at the end of main(),
-    // as per project rules: files are only used at program start (load) and end (save).
+    
 }
 
 // ==================== TAB 16: returnCar asel ====================
